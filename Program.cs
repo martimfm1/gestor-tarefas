@@ -9,7 +9,7 @@ if (!File.Exists(ficheiro))
 
 int opcao = 0;
 
-while (opcao != 3)
+while (opcao != 4)
 {
     Console.WriteLine("=== GESTOR DE TAREFAS ===");
     Console.WriteLine("1 - Ver tarefas");
@@ -43,15 +43,18 @@ while (opcao != 3)
 
     if (opcao == 3)
     {
+        string[] linhas = File.ReadAllLines(ficheiro);
+        List<string> tarefas = new List<string>(linhas);
         Console.WriteLine("Digite o número da tarefa a remover:");
         Console.WriteLine("Tarefas:");
-        Console.WriteLine(File.ReadAllText(ficheiro));
+        for (int i = 0; i < tarefas.Count; i++)
+        {
+            Console.WriteLine($"{i + 1} - {tarefas[i]}");
+        }
         
         int numeroTarefa = int.Parse(Console.ReadLine() ?? "0");
         if (File.Exists(ficheiro))
         {
-            string[] linhas = File.ReadAllLines(ficheiro);
-            List<string> tarefas = new List<string>(linhas);
             if (numeroTarefa > 0 && numeroTarefa <= tarefas.Count)
             {
                 tarefas.RemoveAt(numeroTarefa - 1);
