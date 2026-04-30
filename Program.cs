@@ -1,80 +1,70 @@
-﻿string ficheiro = "tarefas.txt";
-
-if (!File.Exists(ficheiro))
-    {
-        Console.WriteLine("ficheiro de tarefas não encontrado.");
-        Console.WriteLine("Criando um novo ficheiro de tarefas...");
-        File.Create(ficheiro).Close();
-    }
-
-int opcao = 0;
-
-while (opcao != 4)
+﻿string file = "tasks.txt";
+if (!File.Exists(file))
 {
-    Console.WriteLine("=== GESTOR DE TAREFAS ===");
-    Console.WriteLine("1 - Ver tarefas");
-    Console.WriteLine("2 - Adicionar tarefa");
-    Console.WriteLine("3 - Remover tarefa");
-    Console.WriteLine("4 - Sair");
-
-    opcao = int.Parse(Console.ReadLine() ?? "0");
-
-    if (opcao == 1)
+    Console.WriteLine("Task file not found.");
+    Console.WriteLine("Creating a new task file...");
+    File.Create(file).Close();
+}
+int option = 0;
+while (option != 4)
+{
+    Console.WriteLine("=== TASK MANAGER ===");
+    Console.WriteLine("1 - View tasks");
+    Console.WriteLine("2 - Add task");
+    Console.WriteLine("3 - Remove task");
+    Console.WriteLine("4 - Exit");
+    option = int.Parse(Console.ReadLine() ?? "0");
+    if (option == 1)
     {
-        if (File.Exists(ficheiro))
+        if (File.Exists(file))
         {
-            string[] linhas = File.ReadAllLines(ficheiro);
-            List<string> tarefas = new List<string>(linhas);
-            Console.WriteLine("Tarefas:");
-            foreach (string tarefa in tarefas)
+            string[] lines = File.ReadAllLines(file);
+            List<string> tasks = new List<string>(lines);
+            Console.WriteLine("Tasks:");
+            foreach (string task in tasks)
             {
-                Console.WriteLine(tarefa);
+                Console.WriteLine(task);
             }
-        }   
-    }
-
-    if (opcao == 2)
-    {
-        Console.WriteLine("Digite a nova tarefa:");
-        string novaTarefa = Console.ReadLine() ?? "";
-        File.AppendAllText(ficheiro, novaTarefa + Environment.NewLine);
-        Console.WriteLine("Tarefa adicionada com sucesso.");
-    }
-
-    if (opcao == 3)
-    {
-        string[] linhas = File.ReadAllLines(ficheiro);
-        List<string> tarefas = new List<string>(linhas);
-        Console.WriteLine("Digite o número da tarefa a remover:");
-        Console.WriteLine("Tarefas:");
-        for (int i = 0; i < tarefas.Count; i++)
-        {
-            Console.WriteLine($"{i + 1} - {tarefas[i]}");
         }
-        
-        int numeroTarefa = int.Parse(Console.ReadLine() ?? "0");
-        if (File.Exists(ficheiro))
+    }
+    if (option == 2)
+    {
+        Console.WriteLine("Enter the new task:");
+        string newTask = Console.ReadLine() ?? "";
+        File.AppendAllText(file, newTask + Environment.NewLine);
+        Console.WriteLine("Task added successfully.");
+    }
+    if (option == 3)
+    {
+        string[] lines = File.ReadAllLines(file);
+        List<string> tasks = new List<string>(lines);
+        Console.WriteLine("Tasks:");
+        for (int i = 0; i < tasks.Count; i++)
         {
-            if (numeroTarefa > 0 && numeroTarefa <= tarefas.Count)
+            Console.WriteLine($"{i + 1} - {tasks[i]}");
+        }
+        Console.WriteLine("Enter the task number to remove:");
+        int taskNumber = int.Parse(Console.ReadLine() ?? "0");
+        if (File.Exists(file))
+        {
+            if (taskNumber > 0 && taskNumber <= tasks.Count)
             {
-                tarefas.RemoveAt(numeroTarefa - 1);
-                File.WriteAllLines(ficheiro, tarefas);
-                Console.WriteLine("Tarefa removida com sucesso.");
+                tasks.RemoveAt(taskNumber - 1);
+                File.WriteAllLines(file, tasks);
+                Console.WriteLine("Task removed successfully.");
             }
             else
             {
-                Console.WriteLine("Número de tarefa inválido.");
+                Console.WriteLine("Invalid task number.");
             }
         }
     }
-
-    if (opcao == 4)
+    if (option == 4)
     {
-        Console.WriteLine("A sair do programa...");
+        Console.WriteLine("Exiting...");
     }
-
-    if (opcao > 4 || opcao < 1)
+    if (option > 4 || option < 1)
     {
-        Console.WriteLine("Opção inválida!");
+        Console.WriteLine("Invalid option!");
     }
 }

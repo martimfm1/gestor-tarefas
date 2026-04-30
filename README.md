@@ -1,49 +1,49 @@
-# Gestor de Tarefas
+# Task Manager
 
-Gestor de tarefas simples no terminal feito em C#.
-
----
-
-## Como usar
-
-Ao iniciar o programa aparece um menu com 4 opções:
-
-=== GESTOR DE TAREFAS ===
-1 - Ver tarefas
-2 - Adicionar tarefa
-3 - Remover tarefa
-4 - Sair
-
-**Ver tarefas** — mostra todas as tarefas guardadas.
-
-**Adicionar tarefa** — pede o nome da tarefa e guarda-a.
-
-**Remover tarefa** — mostra a lista numerada e pede o número da tarefa a remover.
-
-**Sair** — fecha o programa. As tarefas ficam guardadas para a próxima vez.
+A simple terminal-based task manager built in C#.
 
 ---
 
-## Para programadores
+## How to use
 
-### Como funciona
+When you start the program, a menu appears with 4 options:
 
-O programa guarda as tarefas num ficheiro `tarefas.txt` na pasta do projeto.
+=== TASK MANAGER ===
+1 - View tasks
+2 - Add task
+3 - Remove task
+4 - Exit
 
-- Ao iniciar verifica se o ficheiro existe — se não existir cria-o automaticamente
-- Ao adicionar usa `File.AppendAllText()` para escrever no ficheiro
-- Ao remover carrega todas as linhas para uma `List<string>`, remove o item e reescreve o ficheiro com `File.WriteAllLines()`
+**View tasks** — displays all saved tasks.
 
-### Estrutura do código
+**Add task** — prompts for a task name and saves it.
 
-- `Program.cs` — toda a lógica do programa
-- `tarefas.txt` — ficheiro gerado automaticamente com as tarefas
+**Remove task** — shows the numbered list and asks for the task number to remove.
 
-### Requisitos
+**Exit** — closes the program. Tasks are saved for next time.
 
-- .NET SDK 9.0 ou superior
+---
 
-### Correr localmente
+## For developers
+
+### How it works
+
+Tasks are saved in a `tasks.txt` file in the project folder.
+
+- On startup, checks if the file exists — creates it automatically if not
+- When adding, uses `File.AppendAllText()` to write to the file
+- When removing, loads all lines into a `List<string>`, removes the item and rewrites the file with `File.WriteAllLines()`
+
+### Project structure
+
+- `Program.cs` — all program logic
+- `tasks.txt` — automatically generated file containing the tasks
+
+### Requirements
+
+- .NET SDK 9.0 or higher
+
+### Run locally
 
 ```bash
 git clone https://github.com/martimfm1/gestor-tarefas
@@ -51,10 +51,10 @@ cd gestor-tarefas
 dotnet run
 ```
 
-### Compilar para .exe
+### Build to .exe
 
 ```bash
 dotnet publish -c Release -r win-x64 --self-contained true
 ```
 
-O ficheiro `.exe` aparece em `bin/Release/net9.0/win-x64/publish/`.
+The `.exe` file will be in `bin/Release/net10.0/win-x64/publish/`.
