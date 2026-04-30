@@ -68,3 +68,5 @@ while (option != 4)
         Console.WriteLine("Invalid option!");
     }
 }
+Console.WriteLine("Press any key to exit...");
+Console.ReadKey();
