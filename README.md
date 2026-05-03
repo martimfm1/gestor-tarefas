@@ -7,13 +7,13 @@ A simple terminal-based task manager built in C#.
 ## How to use
 
 When you start the program, a menu appears with 4 options:
-
+```
 === TASK MANAGER ===
 1 - View tasks
 2 - Add task
 3 - Remove task
 4 - Exit
-
+```
 **View tasks** — displays all saved tasks.
 
 **Add task** — prompts for a task name and saves it.
